@@ -23,26 +23,26 @@
 	</bean>
 
 	<!-- sessionFactory创建交给spring管理 -->
-	<bean id="sessionFactory"
+	<!-- <bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<!-- 因为在hibernate核心配置文件中，没有数据库配置，数据库配置在spring里面配置，注入dataSource -->
+		因为在hibernate核心配置文件中，没有数据库配置，数据库配置在spring里面配置，注入dataSource
 		<property name="dataSource" ref="dataSource"></property>
-		<!-- 映射文件所在位置 -->
+		映射文件所在位置
 		<property name="mappingDirectoryLocations" value="classpath*:com/bsp/entity" />
-	</bean>
+	</bean> -->
 
 	<!-- 创建hibernateTemplate对象 -->
-	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
-		<!-- 注入sessionFactory -->
+	<!-- <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		注入sessionFactory
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
+	</bean> -->
 
 	<!-- 第一步 配置事务管理器 -->
-	<bean id="transactionManager"
+	<!-- <bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<!--注入sessionFactory -->
+		注入sessionFactory
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
+	</bean> -->
 
 	<!-- 第二步 开启事务注解 -->
 	<!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
