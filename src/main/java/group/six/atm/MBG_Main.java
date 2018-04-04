@@ -15,7 +15,7 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 
 public class MBG_Main {
 	public static void main(String[] args) {  
-        List<String> warnings = new ArrayList<String>();  
+        List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         //如果这里出现空指针，直接写绝对路径即可。
         String genCfg = "/generatorConfig.xml";  

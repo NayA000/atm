@@ -2,9 +2,6 @@ package group.six.atm.entity;
 
 import java.util.Date;
 
-/**
- * 
- */
 public class Account {
     // id，自增长
     private Long id;

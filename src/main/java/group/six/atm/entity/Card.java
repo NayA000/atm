@@ -1,8 +1,5 @@
 package group.six.atm.entity;
 
-/**
- * 
- */
 public class Card {
     // 卡号
     private String cardNumber;

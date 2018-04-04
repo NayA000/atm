@@ -1,17 +1,14 @@
 package group.six.atm.entity;
 
-/**
- * 
- */
 public class ATM {
     // ATM编号
     private Long ATM_ID;
 
     // 余额
-    private Long balance;
+    private Double balance;
 
     // 金额上限
-    private Long balanceLimit;
+    private Double balanceLimit;
 
     // 是否可存款，1：是，0：否，默认1
     private Integer depositable;
@@ -20,13 +17,13 @@ public class ATM {
     private Integer withdrawable;
 
     // 单次存款上限
-    private Long depositLimit;
+    private Double depositLimit;
 
     // 单次取款上限
-    private Long withdrawLimit;
+    private Double withdrawLimit;
 
     // 单次转账上限
-    private Long transferLimit;
+    private Double transferLimit;
 
     // 是否启用，1：是，0：否，默认1
     private Integer status;
@@ -48,28 +45,28 @@ public class ATM {
     /**
      * 余额
      */
-    public Long getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
     /**
      * @param balance 余额
      */
-    public void setBalance(Long balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
     /**
      * 金额上限
      */
-    public Long getBalanceLimit() {
+    public Double getBalanceLimit() {
         return balanceLimit;
     }
 
     /**
      * @param balanceLimit 金额上限
      */
-    public void setBalanceLimit(Long balanceLimit) {
+    public void setBalanceLimit(Double balanceLimit) {
         this.balanceLimit = balanceLimit;
     }
 
@@ -104,42 +101,42 @@ public class ATM {
     /**
      * 单次存款上限
      */
-    public Long getDepositLimit() {
+    public Double getDepositLimit() {
         return depositLimit;
     }
 
     /**
      * @param depositLimit 单次存款上限
      */
-    public void setDepositLimit(Long depositLimit) {
+    public void setDepositLimit(Double depositLimit) {
         this.depositLimit = depositLimit;
     }
 
     /**
      * 单次取款上限
      */
-    public Long getWithdrawLimit() {
+    public Double getWithdrawLimit() {
         return withdrawLimit;
     }
 
     /**
      * @param withdrawLimit 单次取款上限
      */
-    public void setWithdrawLimit(Long withdrawLimit) {
+    public void setWithdrawLimit(Double withdrawLimit) {
         this.withdrawLimit = withdrawLimit;
     }
 
     /**
      * 单次转账上限
      */
-    public Long getTransferLimit() {
+    public Double getTransferLimit() {
         return transferLimit;
     }
 
     /**
      * @param transferLimit 单次转账上限
      */
-    public void setTransferLimit(Long transferLimit) {
+    public void setTransferLimit(Double transferLimit) {
         this.transferLimit = transferLimit;
     }
 
