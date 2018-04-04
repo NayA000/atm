@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="group.six.atm.dao.AccountMapper" > 
+  <resultMap id="BaseResultMap" type="group.six.atm.entity.Account" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="DOUBLE" />
+    <result column="userID" property="userID" jdbcType="BIGINT" />
+    <result column="freezeTimeStamp" property="freezeTimeStamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, password, status, balance, userID, freezeTimeStamp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from account
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="group.six.atm.entity.Account" >
+    insert into account (id, password, status, 
+      balance, userID, freezeTimeStamp
+      )
+    values (#{id,jdbcType=BIGINT}, #{password,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{balance,jdbcType=DOUBLE}, #{userID,jdbcType=BIGINT}, #{freezeTimeStamp,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="group.six.atm.entity.Account" >
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="userID != null" >
+        userID,
+      </if>
+      <if test="freezeTimeStamp != null" >
+        freezeTimeStamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="userID != null" >
+        #{userID,jdbcType=BIGINT},
+      </if>
+      <if test="freezeTimeStamp != null" >
+        #{freezeTimeStamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="group.six.atm.entity.Account" >
+    update account
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="userID != null" >
+        userID = #{userID,jdbcType=BIGINT},
+      </if>
+      <if test="freezeTimeStamp != null" >
+        freezeTimeStamp = #{freezeTimeStamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="group.six.atm.entity.Account" >
+    update account
+    set password = #{password,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DOUBLE},
+      userID = #{userID,jdbcType=BIGINT},
+      freezeTimeStamp = #{freezeTimeStamp,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
