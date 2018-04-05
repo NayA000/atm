@@ -4,6 +4,9 @@ public class ATM {
     // ATM编号
     private Long ATM_ID;
 
+    // ATM客户端系统密码，即客户端登录之后才能使用系统
+    private String password;
+
     // 余额
     private Double balance;
 
@@ -40,6 +43,20 @@ public class ATM {
      */
     public void setATM_ID(Long ATM_ID) {
         this.ATM_ID = ATM_ID;
+    }
+
+    /**
+     * ATM客户端系统密码，即客户端登录之后才能使用系统
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password ATM客户端系统密码，即客户端登录之后才能使用系统
+     */
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     /**

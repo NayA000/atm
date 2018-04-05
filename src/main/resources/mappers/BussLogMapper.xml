@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="group.six.atm.dao.BussLogMapper" >
-  <resultMap id="BaseResultMap" type="group.six.atm.entity.BussLog" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="opType" property="opType" jdbcType="INTEGER" />
-    <result column="timeStamp" property="timeStamp" jdbcType="TIMESTAMP" />
-    <result column="userCardNumber" property="userCardNumber" jdbcType="VARCHAR" />
-    <result column="payeeCardNumber" property="payeeCardNumber" jdbcType="VARCHAR" />
-    <result column="ATM_ID" property="ATM_ID" jdbcType="BIGINT" />
-    <result column="amount" property="amount" jdbcType="DOUBLE" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="group.six.atm.dao.BussLogMapper">
+  <resultMap id="BaseResultMap" type="group.six.atm.entity.BussLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="opType" jdbcType="INTEGER" property="opType" />
+    <result column="timeStamp" jdbcType="TIMESTAMP" property="timeStamp" />
+    <result column="userCardNumber" jdbcType="VARCHAR" property="userCardNumber" />
+    <result column="payeeCardNumber" jdbcType="VARCHAR" property="payeeCardNumber" />
+    <result column="ATM_ID" jdbcType="BIGINT" property="ATM_ID" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, opType, timeStamp, userCardNumber, payeeCardNumber, ATM_ID, amount
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from buss_log
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from buss_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="group.six.atm.entity.BussLog" >
+  <insert id="insert" parameterType="group.six.atm.entity.BussLog">
     insert into buss_log (id, opType, timeStamp, 
       userCardNumber, payeeCardNumber, ATM_ID, 
       amount)
@@ -31,80 +31,306 @@
       #{userCardNumber,jdbcType=VARCHAR}, #{payeeCardNumber,jdbcType=VARCHAR}, #{ATM_ID,jdbcType=BIGINT}, 
       #{amount,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="group.six.atm.entity.BussLog" >
+  <insert id="insertSelective" parameterType="group.six.atm.entity.BussLog">
     insert into buss_log
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="opType != null" >
+      <if test="opType != null">
         opType,
       </if>
-      <if test="timeStamp != null" >
+      <if test="timeStamp != null">
         timeStamp,
       </if>
-      <if test="userCardNumber != null" >
+      <if test="userCardNumber != null">
         userCardNumber,
       </if>
-      <if test="payeeCardNumber != null" >
+      <if test="payeeCardNumber != null">
         payeeCardNumber,
       </if>
-      <if test="ATM_ID != null" >
+      <if test="ATM_ID != null">
         ATM_ID,
       </if>
-      <if test="amount != null" >
+      <if test="amount != null">
         amount,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="opType != null" >
+      <if test="opType != null">
         #{opType,jdbcType=INTEGER},
       </if>
-      <if test="timeStamp != null" >
+      <if test="timeStamp != null">
         #{timeStamp,jdbcType=TIMESTAMP},
       </if>
-      <if test="userCardNumber != null" >
+      <if test="userCardNumber != null">
         #{userCardNumber,jdbcType=VARCHAR},
       </if>
-      <if test="payeeCardNumber != null" >
+      <if test="payeeCardNumber != null">
         #{payeeCardNumber,jdbcType=VARCHAR},
       </if>
-      <if test="ATM_ID != null" >
+      <if test="ATM_ID != null">
         #{ATM_ID,jdbcType=BIGINT},
       </if>
-      <if test="amount != null" >
+      <if test="amount != null">
         #{amount,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="group.six.atm.entity.BussLog" >
+  <update id="updateByPrimaryKeySelective" parameterType="group.six.atm.entity.BussLog">
     update buss_log
-    <set >
-      <if test="opType != null" >
+    <set>
+      <if test="opType != null">
         opType = #{opType,jdbcType=INTEGER},
       </if>
-      <if test="timeStamp != null" >
+      <if test="timeStamp != null">
         timeStamp = #{timeStamp,jdbcType=TIMESTAMP},
       </if>
-      <if test="userCardNumber != null" >
+      <if test="userCardNumber != null">
         userCardNumber = #{userCardNumber,jdbcType=VARCHAR},
       </if>
-      <if test="payeeCardNumber != null" >
+      <if test="payeeCardNumber != null">
         payeeCardNumber = #{payeeCardNumber,jdbcType=VARCHAR},
       </if>
-      <if test="ATM_ID != null" >
+      <if test="ATM_ID != null">
         ATM_ID = #{ATM_ID,jdbcType=BIGINT},
       </if>
-      <if test="amount != null" >
+      <if test="amount != null">
         amount = #{amount,jdbcType=DOUBLE},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="group.six.atm.entity.BussLog" >
+  <update id="updateByPrimaryKey" parameterType="group.six.atm.entity.BussLog">
+    update buss_log
+    set opType = #{opType,jdbcType=INTEGER},
+      timeStamp = #{timeStamp,jdbcType=TIMESTAMP},
+      userCardNumber = #{userCardNumber,jdbcType=VARCHAR},
+      payeeCardNumber = #{payeeCardNumber,jdbcType=VARCHAR},
+      ATM_ID = #{ATM_ID,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="group.six.atm.entity.BussLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="opType" jdbcType="INTEGER" property="opType" />
+    <result column="timeStamp" jdbcType="TIMESTAMP" property="timeStamp" />
+    <result column="userCardNumber" jdbcType="VARCHAR" property="userCardNumber" />
+    <result column="payeeCardNumber" jdbcType="VARCHAR" property="payeeCardNumber" />
+    <result column="ATM_ID" jdbcType="BIGINT" property="ATM_ID" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, opType, timeStamp, userCardNumber, payeeCardNumber, ATM_ID, amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from buss_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from buss_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="group.six.atm.entity.BussLog">
+    insert into buss_log (id, opType, timeStamp, 
+      userCardNumber, payeeCardNumber, ATM_ID, 
+      amount)
+    values (#{id,jdbcType=BIGINT}, #{opType,jdbcType=INTEGER}, #{timeStamp,jdbcType=TIMESTAMP}, 
+      #{userCardNumber,jdbcType=VARCHAR}, #{payeeCardNumber,jdbcType=VARCHAR}, #{ATM_ID,jdbcType=BIGINT}, 
+      #{amount,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="group.six.atm.entity.BussLog">
+    insert into buss_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="opType != null">
+        opType,
+      </if>
+      <if test="timeStamp != null">
+        timeStamp,
+      </if>
+      <if test="userCardNumber != null">
+        userCardNumber,
+      </if>
+      <if test="payeeCardNumber != null">
+        payeeCardNumber,
+      </if>
+      <if test="ATM_ID != null">
+        ATM_ID,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="opType != null">
+        #{opType,jdbcType=INTEGER},
+      </if>
+      <if test="timeStamp != null">
+        #{timeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCardNumber != null">
+        #{userCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeCardNumber != null">
+        #{payeeCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ATM_ID != null">
+        #{ATM_ID,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="group.six.atm.entity.BussLog">
+    update buss_log
+    <set>
+      <if test="opType != null">
+        opType = #{opType,jdbcType=INTEGER},
+      </if>
+      <if test="timeStamp != null">
+        timeStamp = #{timeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCardNumber != null">
+        userCardNumber = #{userCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeCardNumber != null">
+        payeeCardNumber = #{payeeCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ATM_ID != null">
+        ATM_ID = #{ATM_ID,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="group.six.atm.entity.BussLog">
+    update buss_log
+    set opType = #{opType,jdbcType=INTEGER},
+      timeStamp = #{timeStamp,jdbcType=TIMESTAMP},
+      userCardNumber = #{userCardNumber,jdbcType=VARCHAR},
+      payeeCardNumber = #{payeeCardNumber,jdbcType=VARCHAR},
+      ATM_ID = #{ATM_ID,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="group.six.atm.entity.BussLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="opType" jdbcType="INTEGER" property="opType" />
+    <result column="timeStamp" jdbcType="TIMESTAMP" property="timeStamp" />
+    <result column="userCardNumber" jdbcType="VARCHAR" property="userCardNumber" />
+    <result column="payeeCardNumber" jdbcType="VARCHAR" property="payeeCardNumber" />
+    <result column="ATM_ID" jdbcType="BIGINT" property="ATM_ID" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, opType, timeStamp, userCardNumber, payeeCardNumber, ATM_ID, amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from buss_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from buss_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="group.six.atm.entity.BussLog">
+    insert into buss_log (id, opType, timeStamp, 
+      userCardNumber, payeeCardNumber, ATM_ID, 
+      amount)
+    values (#{id,jdbcType=BIGINT}, #{opType,jdbcType=INTEGER}, #{timeStamp,jdbcType=TIMESTAMP}, 
+      #{userCardNumber,jdbcType=VARCHAR}, #{payeeCardNumber,jdbcType=VARCHAR}, #{ATM_ID,jdbcType=BIGINT}, 
+      #{amount,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="group.six.atm.entity.BussLog">
+    insert into buss_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="opType != null">
+        opType,
+      </if>
+      <if test="timeStamp != null">
+        timeStamp,
+      </if>
+      <if test="userCardNumber != null">
+        userCardNumber,
+      </if>
+      <if test="payeeCardNumber != null">
+        payeeCardNumber,
+      </if>
+      <if test="ATM_ID != null">
+        ATM_ID,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="opType != null">
+        #{opType,jdbcType=INTEGER},
+      </if>
+      <if test="timeStamp != null">
+        #{timeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCardNumber != null">
+        #{userCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeCardNumber != null">
+        #{payeeCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ATM_ID != null">
+        #{ATM_ID,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="group.six.atm.entity.BussLog">
+    update buss_log
+    <set>
+      <if test="opType != null">
+        opType = #{opType,jdbcType=INTEGER},
+      </if>
+      <if test="timeStamp != null">
+        timeStamp = #{timeStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCardNumber != null">
+        userCardNumber = #{userCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeCardNumber != null">
+        payeeCardNumber = #{payeeCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ATM_ID != null">
+        ATM_ID = #{ATM_ID,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="group.six.atm.entity.BussLog">
     update buss_log
     set opType = #{opType,jdbcType=INTEGER},
       timeStamp = #{timeStamp,jdbcType=TIMESTAMP},
