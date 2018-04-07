@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 07/04/2018 10:31:07
+ Date: 07/04/2018 21:49:52
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ CREATE TABLE `account`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `atm`;
 CREATE TABLE `atm`  (
-  `ATM_ID` bigint(20) NOT NULL COMMENT 'ATM编号',
+  `ATM_ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ATM编号,自增长',
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ATM客户端系统密码，即客户端登录之后才能使用系统',
   `balance` double(10, 0) NOT NULL DEFAULT 0 COMMENT '余额',
   `balanceLimit` double(10, 0) NOT NULL COMMENT '金额上限',
@@ -49,7 +49,12 @@ CREATE TABLE `atm`  (
   `transferLimit` double(10, 0) NOT NULL COMMENT '单次转账上限',
   `status` int(11) NOT NULL DEFAULT 1 COMMENT '是否启用，1：是，0：否，默认1',
   PRIMARY KEY (`ATM_ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'ATM' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'ATM' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of atm
+-- ----------------------------
+INSERT INTO `atm` VALUES (1, '123', 500000, 50000, 1, 1, 10000, 10000, 50000, 1);
 
 -- ----------------------------
 -- Table structure for buss_log
@@ -67,9 +72,9 @@ CREATE TABLE `buss_log`  (
   INDEX `FK_LOG_ATM`(`ATM_ID`) USING BTREE,
   INDEX `FK_LOG_USER_CARD`(`userCardNumber`) USING BTREE,
   INDEX `FK_LOG_PAYEE_CARD`(`payeeCardNumber`) USING BTREE,
-  CONSTRAINT `FK_LOG_ATM` FOREIGN KEY (`ATM_ID`) REFERENCES `atm` (`ATM_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_LOG_PAYEE_CARD` FOREIGN KEY (`payeeCardNumber`) REFERENCES `card` (`cardNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_LOG_USER_CARD` FOREIGN KEY (`userCardNumber`) REFERENCES `card` (`cardNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_LOG_USER_CARD` FOREIGN KEY (`userCardNumber`) REFERENCES `card` (`cardNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_LOG_ATM` FOREIGN KEY (`ATM_ID`) REFERENCES `atm` (`ATM_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '交易记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -81,6 +86,11 @@ CREATE TABLE `card`  (
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '状态，0：有效，1：失效',
   PRIMARY KEY (`cardNumber`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '银行卡' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of card
+-- ----------------------------
+INSERT INTO `card` VALUES ('6228481174357860016', 0);
 
 -- ----------------------------
 -- Table structure for user
@@ -97,6 +107,11 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_USER_CARD`(`cardNumber`) USING BTREE,
   CONSTRAINT `FK_USER_CARD` FOREIGN KEY (`cardNumber`) REFERENCES `card` (`cardNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, '溶酶菌', '2018-02-27', 1, '13824865025', '44982199508011234', '6228481174357860016');
 
 SET FOREIGN_KEY_CHECKS = 1;
