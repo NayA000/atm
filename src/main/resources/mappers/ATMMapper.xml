@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="group.six.atm.dao.ATMMapper">
-  <resultMap id="BaseResultMap" type="group.six.atm.entity.ATM">
+  <resultMap id="BaseResultMap" type="ATM">
     <id column="ATM_ID" jdbcType="BIGINT" property="ATM_ID" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="balance" jdbcType="DOUBLE" property="balance" />
@@ -27,7 +27,7 @@
     delete from atm
     where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="group.six.atm.entity.ATM">
+  <insert id="insert" parameterType="ATM">
     insert into atm (ATM_ID, password, balance, 
       balanceLimit, depositable, withdrawable, 
       depositLimit, withdrawLimit, transferLimit, 
@@ -37,7 +37,7 @@
       #{depositLimit,jdbcType=DOUBLE}, #{withdrawLimit,jdbcType=DOUBLE}, #{transferLimit,jdbcType=DOUBLE}, 
       #{status,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="group.six.atm.entity.ATM">
+  <insert id="insertSelective" parameterType="ATM">
     insert into atm
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="ATM_ID != null">
@@ -104,7 +104,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="group.six.atm.entity.ATM">
+  <update id="updateByPrimaryKeySelective" parameterType="ATM">
     update atm
     <set>
       <if test="password != null">
@@ -137,7 +137,7 @@
     </set>
     where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="group.six.atm.entity.ATM">
+  <update id="updateByPrimaryKey" parameterType="ATM">
     update atm
     set password = #{password,jdbcType=VARCHAR},
       balance = #{balance,jdbcType=DOUBLE},
@@ -150,294 +150,5 @@
       status = #{status,jdbcType=INTEGER}
     where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="group.six.atm.entity.ATM">
-    <id column="ATM_ID" jdbcType="BIGINT" property="ATM_ID" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="balance" jdbcType="DOUBLE" property="balance" />
-    <result column="balanceLimit" jdbcType="DOUBLE" property="balanceLimit" />
-    <result column="depositable" jdbcType="INTEGER" property="depositable" />
-    <result column="withdrawable" jdbcType="INTEGER" property="withdrawable" />
-    <result column="depositLimit" jdbcType="DOUBLE" property="depositLimit" />
-    <result column="withdrawLimit" jdbcType="DOUBLE" property="withdrawLimit" />
-    <result column="transferLimit" jdbcType="DOUBLE" property="transferLimit" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ATM_ID, password, balance, balanceLimit, depositable, withdrawable, depositLimit, 
-    withdrawLimit, transferLimit, status
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from atm
-    where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from atm
-    where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="group.six.atm.entity.ATM">
-    insert into atm (ATM_ID, password, balance, 
-      balanceLimit, depositable, withdrawable, 
-      depositLimit, withdrawLimit, transferLimit, 
-      status)
-    values (#{ATM_ID,jdbcType=BIGINT}, #{password,jdbcType=VARCHAR}, #{balance,jdbcType=DOUBLE}, 
-      #{balanceLimit,jdbcType=DOUBLE}, #{depositable,jdbcType=INTEGER}, #{withdrawable,jdbcType=INTEGER}, 
-      #{depositLimit,jdbcType=DOUBLE}, #{withdrawLimit,jdbcType=DOUBLE}, #{transferLimit,jdbcType=DOUBLE}, 
-      #{status,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="group.six.atm.entity.ATM">
-    insert into atm
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="ATM_ID != null">
-        ATM_ID,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="balance != null">
-        balance,
-      </if>
-      <if test="balanceLimit != null">
-        balanceLimit,
-      </if>
-      <if test="depositable != null">
-        depositable,
-      </if>
-      <if test="withdrawable != null">
-        withdrawable,
-      </if>
-      <if test="depositLimit != null">
-        depositLimit,
-      </if>
-      <if test="withdrawLimit != null">
-        withdrawLimit,
-      </if>
-      <if test="transferLimit != null">
-        transferLimit,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="ATM_ID != null">
-        #{ATM_ID,jdbcType=BIGINT},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="balance != null">
-        #{balance,jdbcType=DOUBLE},
-      </if>
-      <if test="balanceLimit != null">
-        #{balanceLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="depositable != null">
-        #{depositable,jdbcType=INTEGER},
-      </if>
-      <if test="withdrawable != null">
-        #{withdrawable,jdbcType=INTEGER},
-      </if>
-      <if test="depositLimit != null">
-        #{depositLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="withdrawLimit != null">
-        #{withdrawLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="transferLimit != null">
-        #{transferLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="group.six.atm.entity.ATM">
-    update atm
-    <set>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="balance != null">
-        balance = #{balance,jdbcType=DOUBLE},
-      </if>
-      <if test="balanceLimit != null">
-        balanceLimit = #{balanceLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="depositable != null">
-        depositable = #{depositable,jdbcType=INTEGER},
-      </if>
-      <if test="withdrawable != null">
-        withdrawable = #{withdrawable,jdbcType=INTEGER},
-      </if>
-      <if test="depositLimit != null">
-        depositLimit = #{depositLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="withdrawLimit != null">
-        withdrawLimit = #{withdrawLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="transferLimit != null">
-        transferLimit = #{transferLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-    </set>
-    where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="group.six.atm.entity.ATM">
-    update atm
-    set password = #{password,jdbcType=VARCHAR},
-      balance = #{balance,jdbcType=DOUBLE},
-      balanceLimit = #{balanceLimit,jdbcType=DOUBLE},
-      depositable = #{depositable,jdbcType=INTEGER},
-      withdrawable = #{withdrawable,jdbcType=INTEGER},
-      depositLimit = #{depositLimit,jdbcType=DOUBLE},
-      withdrawLimit = #{withdrawLimit,jdbcType=DOUBLE},
-      transferLimit = #{transferLimit,jdbcType=DOUBLE},
-      status = #{status,jdbcType=INTEGER}
-    where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="group.six.atm.entity.ATM">
-    <id column="ATM_ID" jdbcType="BIGINT" property="ATM_ID" />
-    <result column="balance" jdbcType="DOUBLE" property="balance" />
-    <result column="balanceLimit" jdbcType="DOUBLE" property="balanceLimit" />
-    <result column="depositable" jdbcType="INTEGER" property="depositable" />
-    <result column="withdrawable" jdbcType="INTEGER" property="withdrawable" />
-    <result column="depositLimit" jdbcType="DOUBLE" property="depositLimit" />
-    <result column="withdrawLimit" jdbcType="DOUBLE" property="withdrawLimit" />
-    <result column="transferLimit" jdbcType="DOUBLE" property="transferLimit" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-  </resultMap>
   
-  <sql id="Base_Column_List">
-    ATM_ID, balance, balanceLimit, depositable, withdrawable, depositLimit, withdrawLimit, 
-    transferLimit, status
-  </sql>
-  
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from atm
-    where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
-  </select>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from atm
-    where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="group.six.atm.entity.ATM">
-    insert into atm (ATM_ID, balance, balanceLimit, 
-      depositable, withdrawable, depositLimit, 
-      withdrawLimit, transferLimit, status
-      )
-    values (#{ATM_ID,jdbcType=BIGINT}, #{balance,jdbcType=DOUBLE}, #{balanceLimit,jdbcType=DOUBLE}, 
-      #{depositable,jdbcType=INTEGER}, #{withdrawable,jdbcType=INTEGER}, #{depositLimit,jdbcType=DOUBLE}, 
-      #{withdrawLimit,jdbcType=DOUBLE}, #{transferLimit,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="group.six.atm.entity.ATM">
-    insert into atm
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="ATM_ID != null">
-        ATM_ID,
-      </if>
-      <if test="balance != null">
-        balance,
-      </if>
-      <if test="balanceLimit != null">
-        balanceLimit,
-      </if>
-      <if test="depositable != null">
-        depositable,
-      </if>
-      <if test="withdrawable != null">
-        withdrawable,
-      </if>
-      <if test="depositLimit != null">
-        depositLimit,
-      </if>
-      <if test="withdrawLimit != null">
-        withdrawLimit,
-      </if>
-      <if test="transferLimit != null">
-        transferLimit,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="ATM_ID != null">
-        #{ATM_ID,jdbcType=BIGINT},
-      </if>
-      <if test="balance != null">
-        #{balance,jdbcType=DOUBLE},
-      </if>
-      <if test="balanceLimit != null">
-        #{balanceLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="depositable != null">
-        #{depositable,jdbcType=INTEGER},
-      </if>
-      <if test="withdrawable != null">
-        #{withdrawable,jdbcType=INTEGER},
-      </if>
-      <if test="depositLimit != null">
-        #{depositLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="withdrawLimit != null">
-        #{withdrawLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="transferLimit != null">
-        #{transferLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="group.six.atm.entity.ATM">
-    update atm
-    <set>
-      <if test="balance != null">
-        balance = #{balance,jdbcType=DOUBLE},
-      </if>
-      <if test="balanceLimit != null">
-        balanceLimit = #{balanceLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="depositable != null">
-        depositable = #{depositable,jdbcType=INTEGER},
-      </if>
-      <if test="withdrawable != null">
-        withdrawable = #{withdrawable,jdbcType=INTEGER},
-      </if>
-      <if test="depositLimit != null">
-        depositLimit = #{depositLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="withdrawLimit != null">
-        withdrawLimit = #{withdrawLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="transferLimit != null">
-        transferLimit = #{transferLimit,jdbcType=DOUBLE},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-    </set>
-    where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="group.six.atm.entity.ATM">
-    update atm
-    set balance = #{balance,jdbcType=DOUBLE},
-      balanceLimit = #{balanceLimit,jdbcType=DOUBLE},
-      depositable = #{depositable,jdbcType=INTEGER},
-      withdrawable = #{withdrawable,jdbcType=INTEGER},
-      depositLimit = #{depositLimit,jdbcType=DOUBLE},
-      withdrawLimit = #{withdrawLimit,jdbcType=DOUBLE},
-      transferLimit = #{transferLimit,jdbcType=DOUBLE},
-      status = #{status,jdbcType=INTEGER}
-    where ATM_ID = #{ATM_ID,jdbcType=BIGINT}
-  </update>
 </mapper>

@@ -1,7 +1,10 @@
 package group.six.atm.entity;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("ATM")
 public class ATM {
-    // ATM编号
+    // ATM编号,自增长
     private Long ATM_ID;
 
     // ATM客户端系统密码，即客户端登录之后才能使用系统
@@ -170,4 +173,13 @@ public class ATM {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+	@Override
+	public String toString() {
+		return "ATM [ATM_ID=" + ATM_ID + ", password=" + password + ", balance=" + balance + ", balanceLimit="
+				+ balanceLimit + ", depositable=" + depositable + ", withdrawable=" + withdrawable + ", depositLimit="
+				+ depositLimit + ", withdrawLimit=" + withdrawLimit + ", transferLimit=" + transferLimit + ", status="
+				+ status + "]";
+	}
+    
 }

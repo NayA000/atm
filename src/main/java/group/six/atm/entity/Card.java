@@ -1,5 +1,8 @@
 package group.six.atm.entity;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Card")
 public class Card {
     // 卡号
     private String cardNumber;
@@ -34,4 +37,11 @@ public class Card {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+	@Override
+	public String toString() {
+		return "Card [cardNumber=" + cardNumber + ", status=" + status + "]";
+	}
+    
+    
 }

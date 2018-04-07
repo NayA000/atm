@@ -33,7 +33,7 @@
 		<junit.version>4.12</junit.version>
 		
 		<log4j.version>1.2.17</log4j.version>
-		<logback-classic.version>1.2.3</logback-classic.version>
+		<logback.version>1.2.3</logback.version>
 		<logback-ext-spring.version>0.1.5</logback-ext-spring.version>
 
 		<mybatis.version>3.4.5</mybatis.version>
@@ -286,11 +286,31 @@
 		<!--使用logback start -->
 		<!--导入这个的时候会自动导入：slf4j-api、logback-core，所以我们还需要导入：log4j和logback-ext-spring -->
 		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>${slf4j.version}</version>
+		</dependency>
+		<!-- <dependency>  
+		    <groupId>org.slf4j</groupId>  
+		    <artifactId>slf4j-simple</artifactId>  
+		    <version>1.7.25</version>  
+		</dependency> -->
+		<!-- <dependency>
+	    	<groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-log4j12</artifactId>
+		    <version>${slf4j.version}</version>
+		    <scope>test</scope>
+		</dependency> -->
+		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>${logback-classic.version}</version>
-			<scope>test</scope>
+			<version>${logback.version}</version>
 		</dependency>
+		<dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>

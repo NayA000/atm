@@ -2,6 +2,9 @@ package group.six.atm.entity;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Account")
 public class Account {
     // id，自增长
     private Long id;
@@ -87,7 +90,7 @@ public class Account {
     /**
      * @param user 用户
      */
-    public void setUserID(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -104,4 +107,11 @@ public class Account {
     public void setFreezeTimeStamp(Date freezeTimeStamp) {
         this.freezeTimeStamp = freezeTimeStamp;
     }
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", password=" + password + ", status=" + status + ", balance=" + balance
+				+ ", freezeTimeStamp=" + freezeTimeStamp + "]";
+	}
+    
 }

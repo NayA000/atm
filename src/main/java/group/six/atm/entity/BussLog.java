@@ -2,6 +2,9 @@ package group.six.atm.entity;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("BussLog")
 public class BussLog {
     // id，自增长
     private Long id;
@@ -12,11 +15,11 @@ public class BussLog {
     // 时间戳
     private Date timeStamp;
 
-    // 用户卡号
-    private String userCardNumber;
+    // 用户银行卡
+    private Card userCard;
 
-    // 收款人卡号，业务类型为转账时有效
-    private String payeeCardNumber;
+    // 收款人银行卡，业务类型为转账时有效
+    private Card payeeCard;
 
     // ATM
     private ATM ATM;
@@ -69,29 +72,29 @@ public class BussLog {
     /**
      * 用户卡号
      */
-    public String getUserCardNumber() {
-        return userCardNumber;
+    public Card getUserCard() {
+        return userCard;
     }
 
     /**
      * @param userCardNumber 用户卡号
      */
-    public void setUserCardNumber(String userCardNumber) {
-        this.userCardNumber = userCardNumber == null ? null : userCardNumber.trim();
+    public void setUserCardNumber(Card userCard) {
+        this.userCard = userCard == null ? null : userCard;
     }
 
     /**
      * 收款人卡号，业务类型为转账时有效
      */
-    public String getPayeeCardNumber() {
-        return payeeCardNumber;
+    public Card getPayeeCard() {
+        return payeeCard;
     }
 
     /**
      * @param payeeCardNumber 收款人卡号，业务类型为转账时有效
      */
-    public void setPayeeCardNumber(String payeeCardNumber) {
-        this.payeeCardNumber = payeeCardNumber == null ? null : payeeCardNumber.trim();
+    public void setPayeeCard(Card payeeCard) {
+        this.payeeCard = payeeCard == null ? null : payeeCard;
     }
 
     /**
@@ -121,4 +124,11 @@ public class BussLog {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+
+	@Override
+	public String toString() {
+		return "BussLog [id=" + id + ", opType=" + opType + ", timeStamp=" + timeStamp + ", amount=" + amount + "]";
+	}
+    
+    
 }

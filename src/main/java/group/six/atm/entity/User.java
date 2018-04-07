@@ -2,6 +2,9 @@ package group.six.atm.entity;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("User")
 public class User {
     // 主键，自增长
     private Long id;
@@ -111,14 +114,21 @@ public class User {
     /**
      * 卡
      */
-    public Card getcard() {
+    public Card getCard() {
         return card;
     }
 
     /**
      * @param card 卡
      */
-    public void setcard(Card card) {
+    public void setCard(Card card) {
         this.card = card == null ? null : card;
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", birthdate=" + birthdate + ", gender=" + gender + ", phone="
+				+ phone + ", ID_Card=" + ID_Card + "]";
+	}
+    
 }

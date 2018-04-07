@@ -1,5 +1,6 @@
 package group.six.atm.config;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -19,8 +20,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ImportResource(locations = {"classpath*:applicationContext.xml"}) // 引入配置文件
 @Import(value = {ShiroConfig.class}) // 引入配置类
 @EnableTransactionManagement // 开启事务管理
+@MapperScan(basePackages = { "group.six.atm.dao" }, sqlSessionFactoryRef = "sqlSessionFactory") // Mapper接口扫描
 @EnableAspectJAutoProxy // 配置切面
-@ComponentScan(basePackages = { "group.six.atm.dao.impl", "group.six.atm.service.impl" }, excludeFilters = {
+@ComponentScan(basePackages = { "group.six.atm.service.impl" }, excludeFilters = {
 		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 public class RootConfig {
 	

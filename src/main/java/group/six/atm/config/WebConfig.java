@@ -31,7 +31,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setSuffix(".jsp");
+		resolver.setSuffix(".html");
 		//resolver.setViewClass(JstlView.class); // 返回jstl视图
 		resolver.setExposeContextBeansAsAttributes(true); // 设置是否把所有在上下文中定义的bean作为request属性可公开访问。
 		return resolver;

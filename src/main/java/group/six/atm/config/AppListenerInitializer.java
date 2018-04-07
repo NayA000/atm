@@ -14,6 +14,9 @@ public class AppListenerInitializer  implements WebApplicationInitializer{
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
+		// 配置logback
+//		servletContext.setInitParameter("logbackConfigLocation", "classpath:logback.xml");
+//		servletContext.addListener(ch.qos.logback.ext.spring.web.LogbackConfigListener.class);
 	}
 
 }

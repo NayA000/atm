@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 	<property name="APP_NAME" value="atm" />
-	<property name="LOG_HOME" value="log" />
+	<property name="LOG_HOME" value="logs" />
 	
 	<contextName>${APP_NAME}</contextName>
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+        <Encoding>UTF-8</Encoding>
 		<encoder> 
-			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern> 
+			<pattern>%d{HH:mm:ss.SSS}:[%thread] %-5level %logger{36} - %msg%n</pattern>
+			<!-- <pattern>%%d{yyyy-MM-dd_HH:mm:ss.SSS} %5p [%t] [%c{1}]:%L - %m%n</pattern> -->
 		</encoder> 
 	</appender>
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> 
+		<Encoding>UTF-8</Encoding>
 		<!-- 配置滚动的策略 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
 			<!-- 日志名称的格式 -->
@@ -33,11 +37,19 @@
 	<!--FATAL level: 指出每个严重的错误事件将会导致应用程序的退出.-->
 	<!--ALL level: 是最低等级的,用于打开所有日志记录.-->
 	<!--OFF level: 是最高等级的,用于关闭所有日志记录.-->
-	<logger name="group.six.atm" level="INFO" />
+	<logger name="group.six.atm" level="DEBUG" />
+	<!--myibatis log configure-->
+	<!-- <logger name="com.ibatis" level="DEBUG" />
+	<logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" />  
+	<logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />  
+	<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />  
+	<logger name="java.sql.Connection" level="DEBUG"/>
+	<logger name="java.sql.Statement" level="DEBUG"/>
+	<logger name="java.sql.PreparedStatement" level="DEBUG"/> -->
 	<!-- 相当于loger元素，只是name值已经确定为root了 -->
 	<root level="DEBUG"> 
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="FILE" /> 
+		<appender-ref ref="FILE" />
 	</root>
 	
 	<!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
@@ -47,9 +59,5 @@
 	<logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
 	<logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" /> -->
 	
-	<!--myibatis log configure-->
-	<logger name="java.sql.Connection" level="DEBUG"/>
-	<logger name="java.sql.Statement" level="DEBUG"/>
-	<logger name="java.sql.PreparedStatement" level="DEBUG"/>
 	
 </configuration>
