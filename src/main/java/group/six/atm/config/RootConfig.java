@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Import(value = {ShiroConfig.class}) // 引入配置类
 @EnableTransactionManagement // 开启事务管理
 @EnableAspectJAutoProxy // 配置切面
-@ComponentScan(basePackages = { "com.bsp.dao.impl", "com.bsp.service.impl", "com.bsp.web.interceptor" }, excludeFilters = {
+@ComponentScan(basePackages = { "group.six.atm.dao.impl", "group.six.atm.service.impl" }, excludeFilters = {
 		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 public class RootConfig {
 	
