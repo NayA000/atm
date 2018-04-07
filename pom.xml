@@ -194,6 +194,7 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis-spring.version}</version>
+			
 		</dependency>
 
 		<!-- 导入Mysql数据库链接jar包 -->
@@ -209,6 +210,12 @@
 			<artifactId>mybatis-generator-core</artifactId>
 			<version>${mybatis-generator.version}</version>
 			<type>jar</type>
+		</dependency>
+		<!-- mybatis第三方缓存 -->
+		<dependency>
+			<groupId>org.mybatis.caches</groupId>
+			<artifactId>mybatis-ehcache</artifactId>
+			<version>${mybatis-ehcache.version}</version>
 		</dependency>
 
 		<dependency>
