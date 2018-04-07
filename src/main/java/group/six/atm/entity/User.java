@@ -21,8 +21,8 @@ public class User {
     // 身份证号
     private String ID_Card;
 
-    // 卡号
-    private String cardNumber;
+    // 卡
+    private Card card;
 
     /**
      * 主键，自增长
@@ -109,16 +109,16 @@ public class User {
     }
 
     /**
-     * 卡号
+     * 卡
      */
-    public String getCardNumber() {
-        return cardNumber;
+    public Card getcard() {
+        return card;
     }
 
     /**
-     * @param cardNumber 卡号
+     * @param card 卡
      */
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber == null ? null : cardNumber.trim();
+    public void setcard(Card card) {
+        this.card = card == null ? null : card;
     }
 }

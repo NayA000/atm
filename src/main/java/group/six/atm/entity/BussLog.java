@@ -18,8 +18,8 @@ public class BussLog {
     // 收款人卡号，业务类型为转账时有效
     private String payeeCardNumber;
 
-    // ATM编号
-    private Long ATM_ID;
+    // ATM
+    private ATM ATM;
 
     // 操作金额
     private Double amount;
@@ -95,17 +95,17 @@ public class BussLog {
     }
 
     /**
-     * ATM编号
+     * ATM
      */
-    public Long getATM_ID() {
-        return ATM_ID;
+    public ATM getATM() {
+        return ATM;
     }
 
     /**
-     * @param ATM_ID ATM编号
+     * @param ATM ATM
      */
-    public void setATM_ID(Long ATM_ID) {
-        this.ATM_ID = ATM_ID;
+    public void setATM(ATM ATM) {
+        this.ATM = ATM;
     }
 
     /**

@@ -15,8 +15,8 @@ public class Account {
     // 账户余额，默认为0
     private Double balance;
 
-    // 用户id
-    private Long userID;
+    // 用户
+    private User user;
 
     // 冻结时间戳，三次输入密码错误，修改此字段值为最后输入密码错误时间，冻结时间为24小时
     private Date freezeTimeStamp;
@@ -78,17 +78,17 @@ public class Account {
     }
 
     /**
-     * 用户id
+     * 用户
      */
-    public Long getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * @param userID 用户id
+     * @param user 用户
      */
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setUserID(User user) {
+        this.user = user;
     }
 
     /**
