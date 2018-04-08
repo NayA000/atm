@@ -1,4 +1,4 @@
-package group.six.atm.service.impl;
+package group.six.atm.service;
 
 public interface IAccountService {
 

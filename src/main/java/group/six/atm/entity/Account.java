@@ -5,14 +5,17 @@ import java.util.Date;
 import org.apache.ibatis.type.Alias;
 
 @Alias("Account")
-public class Account {
-    // id，自增长
+public class Account extends BaseEntity {
+
+	private static final long serialVersionUID = 1L;
+
+	// id，自增长
     private Long id;
 
     // 密码
     private String password;
 
-    // 账户状态,0:正常1:冻结
+    // 账户状态,0:正常1:冻结2:注销
     private Integer status;
 
     // 账户余额，默认为0
@@ -53,7 +56,7 @@ public class Account {
     }
 
     /**
-     * 账户状态,0:正常1:冻结
+     * 账户状态,0:正常1:冻结3:注销
      */
     public Integer getStatus() {
         return status;

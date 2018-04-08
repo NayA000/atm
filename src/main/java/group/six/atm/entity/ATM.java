@@ -1,10 +1,14 @@
 package group.six.atm.entity;
 
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("ATM")
-public class ATM {
-    // ATM编号,自增长
+public class ATM extends BaseEntity {
+
+	private static final long serialVersionUID = 1L;
+
+	// ATM编号,自增长
     private Long ATM_ID;
 
     // ATM客户端系统密码，即客户端登录之后才能使用系统

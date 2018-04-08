@@ -5,8 +5,11 @@ import java.util.Date;
 import org.apache.ibatis.type.Alias;
 
 @Alias("User")
-public class User {
-    // 主键，自增长
+public class User extends BaseEntity {
+	
+	private static final long serialVersionUID = 1L;
+
+	// 主键，自增长
     private Long id;
 
     // 姓名

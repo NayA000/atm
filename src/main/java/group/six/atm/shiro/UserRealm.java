@@ -1,20 +1,12 @@
 package group.six.atm.shiro;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.authc.credential.CredentialsMatcher;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import group.six.atm.entity.User;
-import group.six.atm.service.IUserService;
-
-import java.util.*;
 
 /**
  * 认证Realm
@@ -22,14 +14,12 @@ import java.util.*;
 @Component
 public class UserRealm extends AuthorizingRealm {
 	
-	@Autowired
-	private IUserService userService;
     /**
      * 授权(验证权限时调用)
      */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		User user = (User) principals.getPrimaryPrincipal();
+		//User user = (User) principals.getPrimaryPrincipal();
 		//存放权限信息
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		/*switch (user.getType()){

@@ -22,11 +22,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableTransactionManagement // 开启事务管理
 @MapperScan(basePackages = { "group.six.atm.dao" }, sqlSessionFactoryRef = "sqlSessionFactory") // Mapper接口扫描
 @EnableAspectJAutoProxy // 配置切面
-@ComponentScan(basePackages = { "group.six.atm.service.impl" }, excludeFilters = {
+@ComponentScan(basePackages = { "group.six.atm.service.impl", "group.six.atm.shiro" }, excludeFilters = {
 		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 public class RootConfig {
-	
-	
-	
 	
 }

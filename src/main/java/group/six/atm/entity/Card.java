@@ -1,10 +1,14 @@
 package group.six.atm.entity;
 
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("Card")
-public class Card {
-    // 卡号
+public class Card extends BaseEntity {
+	
+	private static final long serialVersionUID = 1L;
+
+	// 卡号
     private String cardNumber;
 
     // 状态，0：有效，1：失效

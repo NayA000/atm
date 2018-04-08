@@ -5,8 +5,11 @@ import java.util.Date;
 import org.apache.ibatis.type.Alias;
 
 @Alias("BussLog")
-public class BussLog {
-    // id，自增长
+public class BussLog extends BaseEntity {
+	
+	private static final long serialVersionUID = 1L;
+
+	// id，自增长
     private Long id;
 
     // 操作类型，0：取款，1：存款，2：转账
