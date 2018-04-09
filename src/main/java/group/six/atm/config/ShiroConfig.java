@@ -1,5 +1,6 @@
 package group.six.atm.config;
 
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -14,19 +15,21 @@ import org.springframework.context.annotation.Configuration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import group.six.atm.shiro.UserRealm;
+import group.six.atm.shiro.AccountRealm;
 
 @Configuration
 public class ShiroConfig {
-
+	
 	/**
-	 * 注入sessionManager
-	 * 
-	 * @param redisShiroSessionDAO
-	 * @param redisOpen
-	 * @param shiroRedis
-	 * @return
+	 * 创建缓存实例
 	 */
+	@Bean("shiroEhCacheManager")
+	public EhCacheManager shiroEhCacheManager() {
+		EhCacheManager cm = new EhCacheManager();
+		cm.setCacheManagerConfigFile("classpath*:ehcahce-shiro.xml");
+		return cm;
+	}
+
 	@Bean("sessionManager")
 	public SessionManager sessionManager() {
 		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
@@ -39,19 +42,12 @@ public class ShiroConfig {
 		return sessionManager;
 	}
 
-	/**
-	 * 注入securityManager
-	 * 
-	 * @param userRealm
-	 * @param sessionManager
-	 * @return
-	 */
 	@Bean("securityManager")
-	public SecurityManager securityManager(UserRealm userRealm, SessionManager sessionManager) {
+	public SecurityManager securityManager(EhCacheManager shiroEhCacheManager, AccountRealm accountRealm, SessionManager sessionManager) {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-		securityManager.setRealm(userRealm);
+		securityManager.setRealm(accountRealm);
 		securityManager.setSessionManager(sessionManager);
-
+		securityManager.setCacheManager(shiroEhCacheManager);
 		return securityManager;
 	}
 
@@ -63,7 +59,6 @@ public class ShiroConfig {
 		shiroFilter.setUnauthorizedUrl("/no_access");
 		Map<String, String> filterMap = new LinkedHashMap<>();
 		// 放权请求
-		filterMap.put("/static/**", "anon");
 		filterMap.put("/sign_in", "anon");
 		// 拦截所有请求
 		filterMap.put("/**", "authc");

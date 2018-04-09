@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache name="es">
 
-    <diskStore path="java.io.tmpdir"/>
+	<diskStore path="java.io.tmpdir"/>
 
-  <defaultCache    
-          maxElementsInMemory="10000"    
-         maxElementsOnDisk="0"    
+	<defaultCache    
+		maxElementsInMemory="10000"    
+		maxElementsOnDisk="0"    
         eternal="true"    
-         overflowToDisk="true"    
-         diskPersistent="false"    
-         timeToIdleSeconds="0"    
-         timeToLiveSeconds="0"    
-         diskSpoolBufferSizeMB="50"    
-         diskExpiryThreadIntervalSeconds="120"    
-         memoryStoreEvictionPolicy="LFU"    
-     />      
+		overflowToDisk="true"    
+		diskPersistent="false"    
+		timeToIdleSeconds="0"    
+		timeToLiveSeconds="0"    
+		diskSpoolBufferSizeMB="50"    
+		diskExpiryThreadIntervalSeconds="120"    
+		memoryStoreEvictionPolicy="LFU"    
+	/>      
     <!-- 密码输入错误 锁定1小时 -->
     <!-- timeToIdleSeconds:设置对象在失效前的允许闲置时间（单位：秒） -->
     <!-- timeToLiveSeconds:设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。 -->

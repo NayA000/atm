@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * 认证Realm
  */
 @Component
-public class UserRealm extends AuthorizingRealm {
+public class AccountRealm extends AuthorizingRealm {
 	
     /**
      * 授权(验证权限时调用)
