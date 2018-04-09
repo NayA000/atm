@@ -6,22 +6,25 @@ import java.util.Map;
 
 /**
  * 封装返回数据
- * 
+ * @author hayate
+ *
  */
 public class Result extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
 	
+	private static final String CODE = "code";
+	private static final String MSG = "msg";
+	
 	public Result() {
-		//code==0,数据正常
-		put("code", 0);
+		//code==0,表示正常
+		put(CODE, 0);
 	}
 	
 	/**
 	 * 异常
-	 * @return
 	 */
 	public static Result error() {
-		return error(BussCode.ERR_UNKONWN.getCode(), "未知异常，请联系管理员");
+		return error(BussCode.ERR_UNKONWN, "未知异常，请联系管理员");
 	}
 	
 	/**
@@ -30,39 +33,36 @@ public class Result extends HashMap<String, Object> {
 	 * @return
 	 */
 	public static Result error(String msg) {
-		return error(BussCode.ERR_UNKONWN.getCode(), msg);
+		return error(BussCode.ERR_UNKONWN, msg);
 	}
 
 	/**
 	 * 指定异常code值，和异常描述
-	 * @param code
-	 * @param msg
-	 * @return
+	 * @param code 业务异常，枚举
+	 * @param msg 描述
 	 */
-	public static Result error(int code, String msg) {
+	public static Result error(BussCode code, String msg) {
 		Result r = new Result();
-		r.put("code", code);
-		r.put("msg", msg);
+		r.put(CODE, code.getCode());
+		r.put(MSG, msg);
 		return r;
 	}
 	
 	/**
 	 * 正常
 	 * @param msg 文本消息
-	 * @return
 	 */
-	public static Result ok(String msg) {
+	public static Result success(String msg) {
 		Result r = new Result();
-		r.put("msg", msg);
+		r.put(MSG, msg);
 		return r;
 	}
 	
 	/**
 	 * 正常
 	 * @param map 需要返回的数据
-	 * @return
 	 */
-	public static Result ok(Map<String, Object> map) {
+	public static Result success(Map<String, Object> map) {
 		Result r = new Result();
 		r.putAll(map);
 		return r;
@@ -70,17 +70,15 @@ public class Result extends HashMap<String, Object> {
 	
 	/**
 	 * 正常
-	 * @return
 	 */
-	public static Result ok() {
+	public static Result success() {
 		return new Result();
 	}
 
 	/**
-	 * 将需要返回的数据put入
+	 * 添加需要返回的数据
 	 * @param key 键
 	 * @param value 值
-	 * @return
 	 */
 	@Override
 	public Result put(String key, Object value) {
