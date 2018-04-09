@@ -24,7 +24,7 @@ public class Result extends HashMap<String, Object> {
 	 * 异常
 	 */
 	public static Result error() {
-		return error(BussCode.ERR_UNKONWN, "未知异常，请联系管理员");
+		return error(BussCode.ERR_UNKNOWN, "未知异常，请联系管理员");
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class Result extends HashMap<String, Object> {
 	 * @return
 	 */
 	public static Result error(String msg) {
-		return error(BussCode.ERR_UNKONWN, msg);
+		return error(BussCode.ERR_UNKNOWN, msg);
 	}
 
 	/**

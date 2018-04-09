@@ -17,7 +17,7 @@ public enum BussCode {
     /**
      * 未知异常，请联系管理员
      */
-    ERR_UNKONWN(500),
+    ERR_UNKNOWN(500),
     /**
      * 存款失败
      */
