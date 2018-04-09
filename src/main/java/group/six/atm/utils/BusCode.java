@@ -4,24 +4,36 @@ package group.six.atm.utils;
  * 业务异常代码
  */
 public interface BusCode {
+	/**
+	 * 未登录
+	 */
+    int NOT_LOGIN = 401;
     /**
+     * 未授权
+     */
+    int NOT_AUTHORIZATION = 403;
+	/**
      * 未知异常，请联系管理员
      */
     int ERR_UNKONWN = 500;
+
     /**
-     * 新增应用记录失败
+     * 存款失败
      */
-    int FAIL_RECODE_ADD = 10001;
+    int DESPOSIT_ERR = 1000;
+    
     /**
-     * 删除应用记录失败
+     * 取款失败
      */
-    int FAIL_RECODE_DEL = 10002;
+    int WITHDRAW_ERR = 1001;
+    
     /**
-     * 查询应用记录失败
+     * 转账失败
      */
-    int FAIL_RECODE_QUERRY = 10003;
+    int TRANSFER_ERR = 1002;
+    
     /**
-     * 修改应用记录失败
+     * 修改信息失败
      */
-    int FAIL_RECODE_UPDATE = 10004;
+    int MODIFY_ERR = 1003;
 }
