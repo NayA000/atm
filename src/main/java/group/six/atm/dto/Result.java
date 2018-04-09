@@ -1,8 +1,10 @@
-package group.six.atm.utils;
+package group.six.atm.dto;
 
 
 import java.util.HashMap;
 import java.util.Map;
+
+import group.six.atm.utils.BussCode;
 
 /**
  * 封装返回数据

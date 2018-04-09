@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import group.six.atm.shiro.AccountRealm;
+import group.six.atm.shiro.LoginObjectRealm;
 
 @Configuration
 public class ShiroConfig {
@@ -26,7 +26,7 @@ public class ShiroConfig {
 	@Bean("shiroEhCacheManager")
 	public EhCacheManager shiroEhCacheManager() {
 		EhCacheManager cm = new EhCacheManager();
-		cm.setCacheManagerConfigFile("classpath*:ehcahce-shiro.xml");
+		cm.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
 		return cm;
 	}
 
@@ -43,9 +43,9 @@ public class ShiroConfig {
 	}
 
 	@Bean("securityManager")
-	public SecurityManager securityManager(EhCacheManager shiroEhCacheManager, AccountRealm accountRealm, SessionManager sessionManager) {
+	public SecurityManager securityManager(EhCacheManager shiroEhCacheManager, LoginObjectRealm loginObjectRealm, SessionManager sessionManager) {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-		securityManager.setRealm(accountRealm);
+		securityManager.setRealm(loginObjectRealm);
 		securityManager.setSessionManager(sessionManager);
 		securityManager.setCacheManager(shiroEhCacheManager);
 		return securityManager;
