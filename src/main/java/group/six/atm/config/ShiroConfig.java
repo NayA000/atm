@@ -63,7 +63,7 @@ public class ShiroConfig {
 		// 拦截所有请求
 		filterMap.put("/**", "authc");
 		shiroFilter.setFilterChainDefinitionMap(filterMap);
-
+		System.err.println("ShiroConfig.shiroFilter()");
 		return shiroFilter;
 	}
 
