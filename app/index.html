@@ -7,6 +7,15 @@
 </head>
 
   <body>
+	<div id="vue-app">
+		
+		<div v-show="showPage==0">
+			<input type="number" v-model="cardNumber" />
+			<input type="passwd" v-model="passwd" />
+			<button @click="sign_in">登录</button>
+		</div>
+		
+	</div>
 	
   	<script src="./js/jquery-3.3.1.js"></script>
     <script src="./js/commons/common.js"></script>
