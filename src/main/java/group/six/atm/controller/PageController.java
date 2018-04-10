@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import group.six.atm.dto.Result;
+import group.six.atm.exceptions.SystemException;
 import group.six.atm.shiro.ShiroUtils;
 import group.six.atm.utils.BussCode;
 import group.six.atm.utils.Cryptography;
@@ -61,6 +62,8 @@ public class PageController {
 			return Result.error("账号已被锁定");
 		} catch (AuthenticationException e) {
 			return Result.error("账户验证失败");
+		} catch (SystemException e) {
+			return Result.error();
 		}
 		return Result.success();
 	}

@@ -1,15 +1,19 @@
+$(function(){
+})
 vue_app = new Vue({
 	el: "#vue-app",
 	data: {
-		showPage: 1, // 显示页面，0：登录页面，1：账户首页
+		showPage: 0, // 显示页面，0：登录页面，1：账户首页
 		cardNumber: "",
 		passwd: ""
 	},
 	methods: {
-		login: function() {
+		sign_in: function() {
+			console.log(server + "/sign_in")
 			$.ajax({
 				type: "post",
-				url: server + "sign_in",
+				dataType: "json",
+				url: server + "/sign_in",
 				data: {
 					ATM_ID: ATM_ID,
 					cardNumber: this.cardNumber,

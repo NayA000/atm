@@ -20,17 +20,17 @@ public class AppFilterInitializer implements WebApplicationInitializer{
 	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		// 配置字符编码过滤器
-		Dynamic characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", CharacterEncodingFilter.class);
-		characterEncodingFilter.setInitParameter("encoding", "utf-8");
-		characterEncodingFilter.addMappingForUrlPatterns(null, false, "/*");
-		
 		// Shiro过滤器
 		Dynamic shiroFilter = servletContext.addFilter("shiroFilter", DelegatingFilterProxy.class);
 		Map<String, String> initParameters = new LinkedHashMap<>();
 		initParameters.put("targetFilterLifecycle", "true");
 		shiroFilter.setInitParameters(initParameters);
 		shiroFilter.addMappingForUrlPatterns(null, false, "/*");
+		
+		// 配置字符编码过滤器
+		Dynamic characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", CharacterEncodingFilter.class);
+		characterEncodingFilter.setInitParameter("encoding", "utf-8");
+		characterEncodingFilter.addMappingForUrlPatterns(null, false, "/*");
 	}
 
 }
