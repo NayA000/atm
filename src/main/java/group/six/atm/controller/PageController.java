@@ -45,18 +45,18 @@ public class PageController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/sign_in", method = RequestMethod.POST)
-	public Result signIn(@RequestParam String ATM_ID, @RequestParam String cardNumber, @RequestParam String password) {
+	public Result signIn(@RequestParam String ATM_ID, @RequestParam String cardNumber, @RequestParam String passwd) {
 		StringBuilder sb = new StringBuilder(100);
 		sb.append(ATM_ID).append(">>").append(cardNumber);
 		try {
 			Subject subject = ShiroUtils.getSubject();
 			UsernamePasswordToken token = new UsernamePasswordToken(sb.toString(),
-					Cryptography.MD5Hash(password, cardNumber));
+					Cryptography.MD5Hash(passwd, cardNumber));
 			subject.login(token);
 		} catch (UnknownAccountException e) {
 			return Result.error("账号不存在");
 		} catch (IncorrectCredentialsException e) {
-			return Result.error("账号或密码不正确");
+			return Result.error(BussCode.NOT_LOGIN, "账号或密码不正确");
 		} catch (LockedAccountException e) {
 			return Result.error("账号已被锁定");
 		} catch (AuthenticationException e) {
