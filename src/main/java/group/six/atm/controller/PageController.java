@@ -45,13 +45,13 @@ public class PageController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/sign_in", method = RequestMethod.POST)
-	public Result signIn(@RequestParam String ATM_ID, @RequestParam String cardNumber, @RequestParam String password) {
+	public Result signIn(@RequestParam String ATM_ID, @RequestParam String cardNumber, @RequestParam String passwd) {
 		StringBuilder sb = new StringBuilder(100);
 		sb.append(ATM_ID).append(">>").append(cardNumber);
 		try {
 			Subject subject = ShiroUtils.getSubject();
 			UsernamePasswordToken token = new UsernamePasswordToken(sb.toString(),
-					Cryptography.MD5Hash(password, cardNumber));
+					Cryptography.MD5Hash(passwd, cardNumber));
 			subject.login(token);
 		} catch (UnknownAccountException e) {
 			return Result.error("账号不存在");
