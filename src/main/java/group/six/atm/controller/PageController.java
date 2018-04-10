@@ -56,7 +56,7 @@ public class PageController {
 		} catch (UnknownAccountException e) {
 			return Result.error("账号不存在");
 		} catch (IncorrectCredentialsException e) {
-			return Result.error("账号或密码不正确");
+			return Result.error(BussCode.NOT_LOGIN, "账号或密码不正确");
 		} catch (LockedAccountException e) {
 			return Result.error("账号已被锁定");
 		} catch (AuthenticationException e) {
