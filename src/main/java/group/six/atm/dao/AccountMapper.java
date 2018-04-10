@@ -4,4 +4,6 @@ import group.six.atm.entity.Account;
 
 public interface AccountMapper extends BaseMapper<Account, Long>{
 	
+	Account selectByUserId(Long userID);
+	
 }

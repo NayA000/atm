@@ -9,33 +9,18 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import group.six.atm.config.RootConfig;
 import group.six.atm.config.WebConfig;
-import group.six.atm.dao.UserMapper;
-import group.six.atm.entity.User;
+import group.six.atm.dao.AccountMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes= {WebConfig.class, RootConfig.class})
 @WebAppConfiguration
-public class UserTest {
+public class AccountTest {
 	
 	@Autowired
-	private UserMapper userMapper;
-	
-	public void setUserMapper(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-
-	@Test
-	public void testSelectByPrimaryKey() {
-		User u = userMapper.selectByPrimaryKey(1L);
-		System.err.println(u);
-		System.err.println(u.getCard());
-	}
+	private AccountMapper accountMapper;
 	
 	@Test
-	public void testSelectByCardNumber() {
-		User u = userMapper.selectUserByCardNumber("6228481174357860016");
-		System.err.println(u);
-		System.err.println(u.getCard());
+	public void findByUserId() {
+		System.out.println(accountMapper.selectByUserId(1L));
 	}
-	
 }

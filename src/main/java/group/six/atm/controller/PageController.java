@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class PageController {
 
-	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 
 	/**
@@ -49,8 +48,8 @@ public class PageController {
 	public Result signIn(@RequestParam String ATM_ID, @RequestParam String cardNumber, @RequestParam String passwd) {
 		StringBuilder sb = new StringBuilder(100);
 		sb.append(ATM_ID).append(">>").append(cardNumber);
+		Subject subject = ShiroUtils.getSubject();
 		try {
-			Subject subject = ShiroUtils.getSubject();
 			UsernamePasswordToken token = new UsernamePasswordToken(sb.toString(),
 					Cryptography.MD5Hash(passwd, cardNumber));
 			subject.login(token);
@@ -65,6 +64,7 @@ public class PageController {
 		} catch (SystemException e) {
 			return Result.error();
 		}
+		logger.info(ShiroUtils.getLoginObject().getAccount().getUser().getCard().getCardNumber() + "登录系统");
 		return Result.success();
 	}
 
@@ -83,7 +83,7 @@ public class PageController {
 	 * Login页面跳转 公开
 	 */
 	@ResponseBody
-	@RequestMapping(value="/login.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/not_login", method = RequestMethod.GET)
 	public Result login() {
 		return Result.error(BussCode.NOT_LOGIN, "账户未登录");
 	}
@@ -91,11 +91,11 @@ public class PageController {
 	/**
 	 * 退出
 	 */
-	// @RequestMapping(value = "/logout", method = RequestMethod.GET)
-	// public String logout() {
-	// ShiroUtils.logout();
-	// return "redirect:/login.jhtml";
-	// }
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout() {
+		ShiroUtils.logout();
+		return "redirect:/login.jhtml";
+	}
 
 	@RequestMapping("/no_access")
 	public String ban() {
@@ -109,8 +109,8 @@ public class PageController {
 	 */
 	@ResponseBody
 	@RequestMapping("/testRole")
-	@RequiresRoles("ADMIN")
-	public String tt() {
-		return "仅仅管理员可见！！！";
+	@RequiresRoles("USER")
+	public Result tt() {
+		return Result.success("登录用户才能看到的消息");
 	}
 }

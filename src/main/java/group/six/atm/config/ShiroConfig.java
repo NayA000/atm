@@ -55,7 +55,7 @@ public class ShiroConfig {
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
 		shiroFilter.setSecurityManager(securityManager);
-		shiroFilter.setLoginUrl("/login.jhtml");
+		shiroFilter.setLoginUrl("/not_login");
 		shiroFilter.setUnauthorizedUrl("/no_access");
 		Map<String, String> filterMap = new LinkedHashMap<>();
 		// 放权请求
