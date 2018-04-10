@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import group.six.atm.dto.Result;
 import group.six.atm.shiro.ShiroUtils;
+import group.six.atm.utils.BussCode;
 import group.six.atm.utils.Cryptography;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,9 +79,10 @@ public class PageController {
 	/**
 	 * Login页面跳转 公开
 	 */
-	@RequestMapping("/login.jhtml")
-	public String login() {
-		return "login";
+	@ResponseBody
+	@RequestMapping(value="/login.jhtml", method = RequestMethod.GET)
+	public Result login() {
+		return Result.error(BussCode.NOT_LOGIN, "账户未登录");
 	}
 
 	/**
