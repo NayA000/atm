@@ -37,7 +37,15 @@ public class ATM extends BaseEntity {
 
     // 是否启用，1：是，0：否，默认1
     private Integer status;
-
+    
+    /**
+     * 是否启用
+     * @return
+     */
+    public boolean isUsable() {
+    	return status == 1;
+    }
+    
     /**
      * ATM编号
      */

@@ -54,15 +54,15 @@ public class PageController {
 					Cryptography.MD5Hash(passwd, cardNumber));
 			subject.login(token);
 		} catch (UnknownAccountException e) {
-			return Result.error("账号不存在");
+			return Result.error(e.getMessage());
 		} catch (IncorrectCredentialsException e) {
 			return Result.error(BussCode.NOT_LOGIN, "账号或密码不正确");
 		} catch (LockedAccountException e) {
-			return Result.error("账号已被锁定");
+			return Result.error(e.getMessage());
 		} catch (AuthenticationException e) {
 			return Result.error("账户验证失败");
 		} catch (SystemException e) {
-			return Result.error();
+			return Result.error(e.getMessage());
 		}
 		logger.info(ShiroUtils.getLoginObject().getAccount().getUser().getCard().getCardNumber() + "登录系统");
 		return Result.success();

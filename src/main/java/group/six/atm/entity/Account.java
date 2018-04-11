@@ -2,6 +2,7 @@ package group.six.atm.entity;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.ibatis.type.Alias;
 
 @Alias("Account")
@@ -15,7 +16,7 @@ public class Account extends BaseEntity {
     // 密码
     private String password;
 
-    // 账户状态,0:正常1:冻结2:注销
+    // 账户状态,0:正常1:锁定2:注销
     private Integer status;
 
     // 账户余额，默认为0
@@ -26,7 +27,44 @@ public class Account extends BaseEntity {
 
     // 冻结时间戳，三次输入密码错误，修改此字段值为最后输入密码错误时间，冻结时间为24小时
     private Date freezeTimeStamp;
-
+    
+    /**
+     * 是否被临时冻结
+     */
+    public boolean isFreezed() {
+    	if (freezeTimeStamp != null) {
+			long difference = DateUtils.toCalendar(freezeTimeStamp).getTimeInMillis()
+					- DateUtils.toCalendar(new Date()).getTimeInMillis();
+			// 相差天数
+			long day = difference / (3600 * 24 * 1000);
+			if (day < 1) {
+				return true;
+			}
+		}
+    	return false;
+    }
+    
+    /**
+     * 判断账户是否正常
+     */
+    public boolean isUsable() {
+    	return status == 0;
+    }
+    
+    /**
+     * 判断是否被锁定
+     */
+    public boolean isLocked() {
+    	return status == 1;
+    }
+    
+    /**
+     * 判断是否已注销 
+     */
+    public boolean isDeleted() {
+    	return status == 2;
+    }
+    
     /**
      * id，自增长
      */
@@ -56,14 +94,14 @@ public class Account extends BaseEntity {
     }
 
     /**
-     * 账户状态,0:正常1:冻结3:注销
+     * 账户状态,0:正常1:锁定2:注销
      */
     public Integer getStatus() {
         return status;
     }
 
     /**
-     * @param status 账户状态,0:正常1:冻结
+     * @param status 账户状态,0:正常1:锁定2:注销
      */
     public void setStatus(Integer status) {
         this.status = status;
