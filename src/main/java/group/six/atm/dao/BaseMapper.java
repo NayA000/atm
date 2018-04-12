@@ -39,7 +39,7 @@ public interface BaseMapper <T extends BaseEntity, K> {
     T selectByPrimaryKey(K id);
     
     /**
-     * 更新一条记录，忽略值为null的对象
+     * 更新一条记录，忽略值为null的字段
      * @param record 对象
      * @return 受影响记录数
      */

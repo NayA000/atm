@@ -26,6 +26,18 @@ vue_app = new Vue({
 				}
 			});
 		},
+		logout: function(){
+			$.ajax({
+				url: server + "/logout",
+				type: "get",
+				dataType: "json",
+				xhrFields: {withCredentials: true},
+			    crossDomain: true,
+				success: function(data) {
+					
+				}
+			})
+		},
 		testRq: function(){
 			$.ajax({
 				url: server + "/test",
@@ -33,8 +45,13 @@ vue_app = new Vue({
 				dataType: "json",
 				xhrFields: {withCredentials: true},
 			    crossDomain: true,
+			   /* headers:{
+		            "Access-Control-Allow-Headers":"X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,X-E4M-With,userId,token",
+		            "Content-Type" : "multipart/form-data,application/x-www-form-urlencoded; charset=UTF-8",
+		            "X-Requested-With":"XMLHttpRequest"
+		        },*/
 				success: function(data) {
-					
+					console.log(data);
 				}
 			})
 		}

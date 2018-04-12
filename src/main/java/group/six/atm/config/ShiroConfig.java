@@ -15,7 +15,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.Filter;
+
 import group.six.atm.shiro.LoginObjectRealm;
+import group.six.atm.shiro.filter.LoginFilter;
 
 @Configuration
 public class ShiroConfig {
@@ -38,16 +41,25 @@ public class ShiroConfig {
 		sessionManager.setSessionValidationSchedulerEnabled(true);
 		// 去除地址栏JSESSIONID参数
 		sessionManager.setSessionIdUrlRewritingEnabled(false);
-
+		/*sessionManager.setSessionIdCookieEnabled(true);
+		sessionManager.setSessionIdCookie(sessionIdCookie());*/
 		return sessionManager;
 	}
+	
+	/*@Bean("sessionIdCookie")
+	public SimpleCookie sessionIdCookie() {
+		SimpleCookie simpleCookie = new SimpleCookie("shiro.sesssion");
+		simpleCookie.setPath("/");
+		simpleCookie.setName("WEBSID");
+		return simpleCookie;
+	}*/
 
 	@Bean("securityManager")
-	public SecurityManager securityManager(EhCacheManager shiroEhCacheManager, LoginObjectRealm loginObjectRealm, SessionManager sessionManager) {
+	public SecurityManager securityManager(LoginObjectRealm loginObjectRealm, SessionManager sessionManager) {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		securityManager.setRealm(loginObjectRealm);
 		securityManager.setSessionManager(sessionManager);
-		securityManager.setCacheManager(shiroEhCacheManager);
+		securityManager.setCacheManager(shiroEhCacheManager());
 		return securityManager;
 	}
 
@@ -55,16 +67,36 @@ public class ShiroConfig {
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
 		shiroFilter.setSecurityManager(securityManager);
-		shiroFilter.setLoginUrl("/not_login");
-		shiroFilter.setUnauthorizedUrl("/no_access");
-		Map<String, String> filterMap = new LinkedHashMap<>();
+		
+		// 配置过滤器
+		Map<String, Filter> filters = new LinkedHashMap<>();
+		filters.put("login", loginFilter()); // 登录过滤器
+		shiroFilter.setFilters(filters);
+		//shiroFilter.setLoginUrl("/not_login");
+		//shiroFilter.setUnauthorizedUrl("/no_access");
 		// 放权请求
+		Map<String, String> filterMap = new LinkedHashMap<>();
 		filterMap.put("/sign_in", "anon");
-		// 拦截所有请求
-		filterMap.put("/**", "authc");
+		filterMap.put("/logout", "logout");
+		filterMap.put("/**", "login,authc");// 拦截所有请求
 		shiroFilter.setFilterChainDefinitionMap(filterMap);
 		return shiroFilter;
 	}
+	
+	/**
+	 * 登录过滤器
+	 */
+	@Bean
+	public LoginFilter loginFilter() {
+		return new LoginFilter();
+	}
+	
+	/*@Bean
+	public LogoutFilter logoutFilter() {
+		LogoutFilter logoutFilter = new LogoutFilter();
+		logoutFilter.setRedirectUrl("/log_out");
+		return logoutFilter;
+	}*/
 
 	@Bean("lifecycleBeanPostProcessor")
 	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -84,4 +116,5 @@ public class ShiroConfig {
 		advisor.setSecurityManager(securityManager);
 		return advisor;
 	}
+	
 }

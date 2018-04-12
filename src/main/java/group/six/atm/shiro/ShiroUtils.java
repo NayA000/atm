@@ -28,7 +28,7 @@ public class ShiroUtils {
 		return SecurityUtils.getSubject();
 	}
 
-	public static LoginObject getLoginObject() {
+	public static LoginObject getToken() {
 		return (LoginObject) SecurityUtils.getSubject().getPrincipal();
 	}
 

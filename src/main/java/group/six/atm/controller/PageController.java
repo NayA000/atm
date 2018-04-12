@@ -64,7 +64,7 @@ public class PageController {
 		} catch (SystemException e) {
 			return Result.error(e.getMessage());
 		}
-		logger.info(ShiroUtils.getLoginObject().getAccount().getUser().getCard().getCardNumber() + "登录系统");
+		logger.info(ShiroUtils.getToken().getAccount().getUser().getCard().getCardNumber() + "登录系统");
 		return Result.success();
 	}
 
@@ -85,16 +85,23 @@ public class PageController {
 	@ResponseBody
 	@RequestMapping(value = "/not_login", method = RequestMethod.GET)
 	public Result login() {
+		System.err.println("111");
 		return Result.error(BussCode.NOT_LOGIN, "账户未登录");
 	}
 
 	/**
 	 * 退出
 	 */
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout() {
-		ShiroUtils.logout();
-		return "redirect:/login.jhtml";
+	@RequestMapping(value = "/log_out", method = RequestMethod.GET)
+	public Result logout() {
+		try {
+			ShiroUtils.logout();
+		} catch (Exception e) {
+			logger.error("errorMessage:" + e.getMessage());
+			return Result.error("退出登录失败");
+		}
+		
+		return Result.success();
 	}
 
 	@RequestMapping("/no_access")

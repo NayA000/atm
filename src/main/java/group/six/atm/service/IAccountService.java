@@ -1,5 +1,7 @@
 package group.six.atm.service;
 
+import javax.security.auth.login.AccountException;
+
 import group.six.atm.dto.LoginObject;
 import group.six.atm.entity.Account;
 import group.six.atm.entity.BussLog;
@@ -33,13 +35,13 @@ public interface IAccountService {
 	 * @param oldPassword 新密码
 	 * @param newPassword 旧密码
 	 */
-	void changePassword(LoginObject loginObject, String oldPassword, String newPassword);
+	void changePassword(LoginObject loginObject, String oldPassword, String newPassword) throws AccountException ;
 	
 	/**
 	 * 冻结账户
 	 * @param loginObject 登录对象
 	 */
-	void freezePassord(LoginObject loginObject);
+	void freezeAccount(LoginObject loginObject);
 	
 	/**
 	 * 查询个人信息

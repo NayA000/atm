@@ -11,6 +11,10 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import group.six.atm.utils.CorsFilter;
+
+
+
 /**
  * 注册过滤器
  * @author Hayate
@@ -20,6 +24,11 @@ public class AppFilterInitializer implements WebApplicationInitializer{
 	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
+		// 配置跨域访问
+		Dynamic corsFilter = servletContext.addFilter("corsFilter", CorsFilter.class);
+		corsFilter.setInitParameter("encoding", "utf-8");	
+		corsFilter.addMappingForUrlPatterns(null, false, "/*");
+		
 		// Shiro过滤器
 		Dynamic shiroFilter = servletContext.addFilter("shiroFilter", DelegatingFilterProxy.class);
 		Map<String, String> initParameters = new LinkedHashMap<>();

@@ -1,5 +1,9 @@
 package group.six.atm.service.impl;
 
+import java.util.Date;
+
+import javax.security.auth.login.AccountException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +15,7 @@ import group.six.atm.entity.Account;
 import group.six.atm.entity.BussLog;
 import group.six.atm.entity.User;
 import group.six.atm.service.IAccountService;
+import group.six.atm.utils.Cryptography;
 
 @Service("accountService")
 public class AccountServiceImpl implements IAccountService {
@@ -56,12 +61,25 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 	@Override
-	public void changePassword(LoginObject loginObject, String oldPassword, String newPassword) {
-		
+	public void changePassword(LoginObject loginObject, String oldPassword, String newPassword) throws AccountException {
+		boolean correct = Cryptography.checkMd5Hash(oldPassword, oldPassword, loginObject.getAccount().getUser().getCard().getCardNumber());
+		if (!correct) {
+			throw new AccountException("原密码错误");
+		}
+		newPassword = Cryptography.MD5Hash(oldPassword, loginObject.getAccount().getUser().getCard().getCardNumber());
+		Account temp = new Account();
+		temp.setId(loginObject.getAccount().getId());
+		// 只更新密码
+		temp.setPassword(newPassword);
+		accountMapper.updateByPrimaryKeySelective(temp);
 	}
 	
 	@Override
-	public void freezePassord(LoginObject loginObject) {
+	public void freezeAccount(LoginObject loginObject) {
+		Account temp = new Account();
+		temp.setId(loginObject.getAccount().getId());
+		temp.setFreezeTimeStamp(new Date());
+		accountMapper.updateByPrimaryKeySelective(temp);
 	}
 
 	@Override

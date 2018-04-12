@@ -17,7 +17,7 @@ public class TestController {
 	@RequestMapping("/test")
 	public Result testConfig() {
 		logger.info(ShiroUtils.getSession().getId()+": 访问测试链接");
-		System.err.println(ShiroUtils.getLoginObject().getAccount());
+		System.err.println(ShiroUtils.getToken().getAccount());
 		return Result.success("测试成功");
 	}
 }
