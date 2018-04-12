@@ -46,7 +46,6 @@ public class LoginFilter  extends AccessControlFilter {
 			resultMap.put("code", BussCode.NOT_LOGIN.getCode().toString());
 			resultMap.put("message", "当前用户没有登录！");//当前用户没有登录！
 			ShiroFilterUtils.out(response, resultMap);
-			System.err.println("isAccessAllowed");
 		}
 		return Boolean.FALSE ;
             

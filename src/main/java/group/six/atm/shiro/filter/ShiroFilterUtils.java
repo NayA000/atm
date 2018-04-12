@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import group.six.atm.utils.JsonUtils;
@@ -39,8 +38,9 @@ public class ShiroFilterUtils {
 	 * @return
 	 */
 	public static boolean isAjax(ServletRequest request){
-		System.out.println(((HttpServletRequest) request).getHeader("X-Requested-With"));
-		return true;//return "XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"));
+		return true;
+		// 无效
+		//return "XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"));
 	}
 	
 	/**

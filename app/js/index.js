@@ -42,12 +42,13 @@ vue_app = new Vue({
 			$.ajax({
 				url: server + "/test",
 				type: "get",
-				dataType: "json",
-				xhrFields: {withCredentials: true},
-			    crossDomain: true,
-			   /* headers:{
-		            "Access-Control-Allow-Headers":"X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,X-E4M-With,userId,token",
-		            "Content-Type" : "multipart/form-data,application/x-www-form-urlencoded; charset=UTF-8",
+				dataType: "jsonp",
+				jsonpCallback: function(data){
+					console.log(data);
+				},
+//				xhrFields: {withCredentials: true},
+//			    crossDomain: true,
+			   /*headers:{
 		            "X-Requested-With":"XMLHttpRequest"
 		        },*/
 				success: function(data) {

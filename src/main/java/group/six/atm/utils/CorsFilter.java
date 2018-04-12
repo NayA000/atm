@@ -8,7 +8,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CorsFilter implements Filter {
@@ -36,6 +35,8 @@ public class CorsFilter implements Filter {
 		httpServletResponse.setHeader("Access-Control-Allow-Headers","Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,X-E4M-With,userId,token");
 		
 		httpServletResponse.setContentType("application/json;charset=UTF-8");
+		
+		httpServletResponse.setHeader("X-Requested-With", "XMLHttpRequest");
 		
 		httpServletResponse.setHeader("XDomainRequestAllowed","1");
 		
