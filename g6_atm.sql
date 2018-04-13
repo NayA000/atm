@@ -27,7 +27,7 @@ CREATE TABLE `account`  (
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0:正常1:锁定2:注销',
   `balance` double(10, 0) NOT NULL DEFAULT 0 COMMENT '账户余额，默认为0',
   `userID` bigint(20) NOT NULL COMMENT '用户id',
-  `freezeTimeStamp` timestamp(0) NULL DEFAULT NULL COMMENT '冻结时间戳，三次输入密码错误，修改此字段值为最后输入密码错误时间，冻结时间为24小时',
+  `freezeTimeStamp` timestamp NULL DEFAULT NULL COMMENT '冻结时间戳，三次输入密码错误，修改此字段值为最后输入密码错误时间，冻结时间为24小时',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_ACCOUNT_USER`(`userID`) USING BTREE,
   CONSTRAINT `FK_ACCOUNT_USER` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -68,7 +68,7 @@ DROP TABLE IF EXISTS `buss_log`;
 CREATE TABLE `buss_log`  (
   `id` bigint(20) NOT NULL COMMENT 'id，自增长',
   `opType` int(11) NOT NULL COMMENT '操作类型，0：取款，1：存款，2：转账',
-  `timeStamp` datetime(0) NOT NULL COMMENT '时间戳',
+  `timeStamp` datetime NOT NULL COMMENT '时间戳',
   `userCardNumber` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户卡号',
   `payeeCardNumber` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收款人卡号，业务类型为转账时有效',
   `ATM_ID` bigint(20) NOT NULL COMMENT 'ATM编号',
