@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 07/04/2018 21:49:52
+ Date: 13/04/2018 10:21:31
 */
 
 SET NAMES utf8mb4;
@@ -24,14 +24,19 @@ DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id，自增长',
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
-  `status` int(11) NOT NULL DEFAULT 0 COMMENT '账户状态,0:正常1:冻结',
+  `status` int(11) NOT NULL DEFAULT 0 COMMENT '0:正常1:锁定2:注销',
   `balance` double(10, 0) NOT NULL DEFAULT 0 COMMENT '账户余额，默认为0',
   `userID` bigint(20) NOT NULL COMMENT '用户id',
   `freezeTimeStamp` timestamp(0) NULL DEFAULT NULL COMMENT '冻结时间戳，三次输入密码错误，修改此字段值为最后输入密码错误时间，冻结时间为24小时',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_ACCOUNT_USER`(`userID`) USING BTREE,
   CONSTRAINT `FK_ACCOUNT_USER` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '账户' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '账户' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of account
+-- ----------------------------
+INSERT INTO `account` VALUES (1, '3dc3699f08d283209840eb1423611dd7', 0, 100000, 1, NULL);
 
 -- ----------------------------
 -- Table structure for atm
@@ -72,9 +77,9 @@ CREATE TABLE `buss_log`  (
   INDEX `FK_LOG_ATM`(`ATM_ID`) USING BTREE,
   INDEX `FK_LOG_USER_CARD`(`userCardNumber`) USING BTREE,
   INDEX `FK_LOG_PAYEE_CARD`(`payeeCardNumber`) USING BTREE,
+  CONSTRAINT `FK_LOG_ATM` FOREIGN KEY (`ATM_ID`) REFERENCES `atm` (`ATM_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_LOG_PAYEE_CARD` FOREIGN KEY (`payeeCardNumber`) REFERENCES `card` (`cardNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_LOG_USER_CARD` FOREIGN KEY (`userCardNumber`) REFERENCES `card` (`cardNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_LOG_ATM` FOREIGN KEY (`ATM_ID`) REFERENCES `atm` (`ATM_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_LOG_USER_CARD` FOREIGN KEY (`userCardNumber`) REFERENCES `card` (`cardNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '交易记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
