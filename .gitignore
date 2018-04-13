@@ -1,5 +1,5 @@
 *.class
-/.idea/
+**/.idea/
 /target/
 /logs/
 /app/.project

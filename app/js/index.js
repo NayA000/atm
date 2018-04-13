@@ -42,12 +42,12 @@ vue_app = new Vue({
 			$.ajax({
 				url: server + "/test",
 				type: "get",
-				dataType: "jsonp",
+				dataType: "json",
 				jsonpCallback: function(data){
 					console.log(data);
 				},
-//				xhrFields: {withCredentials: true},
-//			    crossDomain: true,
+ 				xhrFields: {withCredentials: true},
+ 			    crossDomain: true,
 			   /*headers:{
 		            "X-Requested-With":"XMLHttpRequest"
 		        },*/
