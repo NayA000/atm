@@ -63,6 +63,8 @@ public class PageController {
 			return Result.error("账户验证失败");
 		} catch (SystemException e) {
 			return Result.error(e.getMessage());
+		} catch (Exception e) {
+			return Result.error(BussCode.ERR_UNKNOWN, "系统错误");
 		}
 		logger.info(ShiroUtils.getToken().getAccount().getUser().getCard().getCardNumber() + "登录系统");
 		return Result.success();

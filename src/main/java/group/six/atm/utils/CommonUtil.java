@@ -164,11 +164,23 @@ public class CommonUtil {
 	 * @param mobile
 	 * @return
 	 */
-	public static String fuzzyNumber(String mobile) {
+	public static String fuzzyPhoneNumber(String mobile) {
 		if(mobile.length() != 11){
 			return "***********";
 		}
 		return mobile.substring(0, 3) + "****" + mobile.substring(7);
+	}
+	
+	/**
+	 * 模糊遮盖银行卡号
+	 * @param number
+	 * @return
+	 */
+	public static String fuzzyCardNumber(String number) {
+		if(number.length() != 19){
+			return "*******************";
+		}
+		return number.substring(0, 3) + "************" + number.substring(15);
 	}
 
 	/**

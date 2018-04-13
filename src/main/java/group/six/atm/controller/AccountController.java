@@ -1,10 +1,10 @@
 package group.six.atm.controller;
 
-import java.util.Date;
-
 import javax.security.auth.login.AccountException;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +23,8 @@ import group.six.atm.utils.BussCode;
 @RequestMapping("/account")
 @RequiresRoles("USER")
 public class AccountController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 	
 	@Autowired
 	private IAccountService accountService;
@@ -76,6 +78,7 @@ public class AccountController {
 	/**
 	 * 冻结账户
 	 */
+	@RequestMapping(value="/freeze",method=RequestMethod.PUT)
 	public Result freezeAccount() {
 		accountService.freezeAccount(ShiroUtils.getToken());
 		return Result.success();

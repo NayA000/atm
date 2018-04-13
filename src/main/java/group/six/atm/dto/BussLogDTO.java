@@ -2,6 +2,9 @@ package group.six.atm.dto;
 
 import java.util.Date;
 
+import group.six.atm.entity.BussLog;
+import group.six.atm.utils.CommonUtil;
+
 public class BussLogDTO {
 	
 	// id，自增长
@@ -21,6 +24,32 @@ public class BussLogDTO {
 
     // 操作金额
     private Double amount;
+    
+    /**
+     * 封装BussLogDTO
+     * @param bussLog
+     */
+    public static BussLogDTO copy(BussLog bussLog) {
+    	BussLogDTO bussLogDTO = new BussLogDTO();
+    	bussLogDTO.setAmount(bussLog.getAmount());
+    	bussLogDTO.setId(bussLog.getId());
+    	bussLogDTO.setUserCardNumber(CommonUtil.fuzzyCardNumber(bussLog.getUserCard().getCardNumber()));
+    	switch (bussLog.getOpType()) {
+		case 0:
+			bussLogDTO.setOpType("取款");
+			break;
+		case 1:
+			bussLogDTO.setOpType("存款");
+			break;
+		case 2:
+			bussLogDTO.setOpType("转账");
+			bussLogDTO.setPayeeCardNumber(CommonUtil.fuzzyCardNumber(bussLog.getPayeeCard().getCardNumber()));
+			break;
+		default:
+			break;
+		}
+    	return bussLogDTO;
+    }
 
 	public Long getId() {
 		return id;

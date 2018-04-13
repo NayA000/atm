@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import group.six.atm.utils.Cryptography;
 
-public class MD5Util {
+public class MD5UtilTest {
 	
 	@Test
 	public void get() {

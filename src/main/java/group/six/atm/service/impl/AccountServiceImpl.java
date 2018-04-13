@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import group.six.atm.dao.AccountMapper;
-import group.six.atm.dao.BussLogMapper;
 import group.six.atm.dao.UserMapper;
 import group.six.atm.dto.LoginObject;
 import group.six.atm.entity.Account;
-import group.six.atm.entity.BussLog;
 import group.six.atm.entity.User;
 import group.six.atm.service.IAccountService;
 import group.six.atm.utils.Cryptography;
@@ -24,8 +22,6 @@ public class AccountServiceImpl implements IAccountService {
 	private AccountMapper accountMapper;
 	@Autowired
 	private UserMapper userMapper;
-	@Autowired
-	private BussLogMapper bussLogMapper;
 	
 	public void setAccountMapper(AccountMapper accountMapper) {
 		this.accountMapper = accountMapper;
@@ -33,10 +29,6 @@ public class AccountServiceImpl implements IAccountService {
 	
 	public void setUserMapper(UserMapper userMapper) {
 		this.userMapper = userMapper;
-	}
-
-	public void setBussLogMapper(BussLogMapper bussLogMapper) {
-		this.bussLogMapper = bussLogMapper;
 	}
 
 	@Override
@@ -84,21 +76,6 @@ public class AccountServiceImpl implements IAccountService {
 
 	@Override
 	public Account getAccountData(LoginObject loginObject) {
-		return null;
-	}
-
-	@Override
-	public BussLog deposit(Long amount, LoginObject loginObject) {
-		return null;
-	}
-
-	@Override
-	public BussLog withdraw(Long amount, LoginObject loginObject) {
-		return null;
-	}
-
-	@Override
-	public BussLog transfer(Long amount, LoginObject loginObject, String payeeCardNumber) {
 		return null;
 	}
 

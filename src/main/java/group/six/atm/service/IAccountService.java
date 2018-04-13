@@ -4,7 +4,6 @@ import javax.security.auth.login.AccountException;
 
 import group.six.atm.dto.LoginObject;
 import group.six.atm.entity.Account;
-import group.six.atm.entity.BussLog;
 import group.six.atm.entity.User;
 
 public interface IAccountService {
@@ -50,29 +49,4 @@ public interface IAccountService {
 	 */
 	Account getAccountData(LoginObject loginObject);
 	
-	/**
-	 * 存款
-	 * @param amount 金额，100的整数
-	 * @param loginObject
-	 * @return 存款记录
-	 */
-	BussLog deposit(Long amount, LoginObject loginObject);
-	
-	/**
-	 * 取款
-	 * @param amount 金额，100的整数
-	 * @param loginObject
-	 * @return 取款记录
-	 */
-	BussLog withdraw(Long amount, LoginObject loginObject);
-	
-	/**
-	 * 转账
-	 * @param amount 金额，100的整数
-	 * @param loginObject 当前登录账户
-	 * @param payeeCardNumber 收款账户卡号 
-	 * @return 转账记录
-	 */
-	BussLog transfer(Long amount, LoginObject loginObject, String payeeCardNUmber);
-
 }
