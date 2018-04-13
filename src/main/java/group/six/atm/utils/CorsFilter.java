@@ -42,7 +42,7 @@ public class CorsFilter implements Filter {
 		
 		httpServletResponse.setHeader("Access-Control-Allow-Credentials","true");
 		
-		httpServletResponse.setHeader("Access-Control-Allow-Origin", "file://");
+		httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:8020");
 
 		httpServletResponse.setHeader("Access-Control-Allow-Headers", "accept,content-type");
 
